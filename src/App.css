@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --task-border: 2px solid black;
+  --accent-color: #eafffe;
+}
+body {
+  font-family: sans-serif;
+  font-size: 1.125rem;
+
+  margin: 0;
+}
+
+/* Typography */
+h2 {
+  font-size: 3.5rem;
+
+  margin: 0 auto 0.1em;
+
+  text-align: center;
+}
+.logo-text {
+  font-size: 1.5rem;
+}
+
+.description {
+  font-size: 2rem;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Layout */
+.nav {
+  display: flex;
+  align-items: center;
+
+  height: 3rem;
+  padding: 0.5em;
+}
+.logo {
+  height: 100%;
+  margin-left: -1em;
+}
+
+.task {
+  display: grid;
+
+  width: 100%;
+  height: 25vw;
+
+  border-top: var(--task-border);
+
+  grid-template-columns: 25vw repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "checkbox description description"
+    "checkbox edit delete";
+}
+.task:last-child {
+  height: calc(25vw + 3px);
+
+  border-bottom: var(--task-border);
+}
+.checkbox-wrapper,
+.edit {
+  border-right: var(--task-border);
+}
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-area: checkbox;
+}
+.checkbox {
+  width: 60%;
+  height: 60%;
+
+  color: transparent;
+  border: 5px solid black;
+  background-color: transparent;
+
+  appearance: none;
+}
+.checkbox:checked,
+.task-button {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.checkbox:checked {
+  background-image: url("./img/checkmark.svg");
+}
+.description-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  grid-area: description;
+}
+.task-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  border-top: var(--task-border);
+  background-color: var(--accent-color);
+}
+.edit {
+  background-image: url("../src/img/gear.svg");
+
+  grid-area: edit;
+}
+.delete {
+  background-image: url("../src/img/trash.svg");
+
+  grid-area: delete;
+}
+.action-icon {
+  width: auto;
+  height: 32px;
+}
+
+@media screen and (min-width: 600px) {
+  .task {
+    grid-template-columns: 15vw 55vw repeat(2, 15vw);
+    grid-template-areas: "checkbox description edit delete";
+    height: 15vw;
+    grid-template-rows: 1fr;
+  }
+  .task:last-child {
+    height: calc(15vw + 3px);
+  }
+  .edit,
+  .delete {
+    border-top: 0;
+  }
+}
