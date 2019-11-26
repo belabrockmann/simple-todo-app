@@ -13,7 +13,7 @@ body {
 }
 
 /* Typography */
-h2 {
+.title {
   font-size: 3.5rem;
 
   margin: 0 auto 0.1em;
@@ -36,6 +36,12 @@ h2 {
 }
 
 /* Layout */
+
+.btn {
+  display: inline-block;
+  border: none;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -129,6 +135,45 @@ h2 {
   height: 32px;
 }
 
+/* EditTask */
+.edit-task {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 80%;
+  grid-auto-rows: 20vw;
+  margin: 0 auto;
+  text-align: center;
+}
+.task-description-form {
+  margin-top: 3em;
+}
+
+.task-description-input {
+  height: 2rem;
+  border: 1px solid #404040;
+  padding: 0.2em 0.5em;
+  margin: 1rem;
+}
+.btn-submit {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5em 1.5em;
+  background-color: limegreen;
+  height: 2rem;
+  box-sizing: border-box;
+}
+/* media queries */
+
+@media screen and (min-width: 450px) {
+  .title {
+    font-size: 5rem;
+  }
+  .description {
+    font-size: 3rem;
+  }
+}
+
 @media screen and (min-width: 600px) {
   .task {
     grid-template-columns: 15vw 55vw repeat(2, 15vw);
@@ -142,5 +187,11 @@ h2 {
   .edit,
   .delete {
     border-top: 0;
+  }
+  .title {
+    font-size: 6rem;
+  }
+  .description {
+    font-size: 4rem;
   }
 }
