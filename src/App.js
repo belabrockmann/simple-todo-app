@@ -1,5 +1,7 @@
 import React from 'react';
-import { Logo, Tasks } from './components';
+import { Logo, Tasks, EditTask } from './components';
+import { Route } from 'react-router-dom';
+
 import './App.css';
 export default function App() {
   let tasks = [
@@ -25,8 +27,12 @@ export default function App() {
   return (
     <>
       <Logo />
-      <h2 className="title">Your tasks</h2>
-      <Tasks tasks={tasks} />
+      <Route path="/edit/:desc">
+        <EditTask />
+      </Route>
+      <Route path="/" exact>
+        <Tasks tasks={tasks} />
+      </Route>
     </>
   )
 }
