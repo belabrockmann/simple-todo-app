@@ -1,38 +1,48 @@
 import React from 'react';
-import { Logo, Tasks, EditTask } from './components';
-import { Route } from 'react-router-dom';
+import { Logo, Tasks, EditTask, CreateTask } from './components';
+import { Route, Switch } from 'react-router-dom';
 
 import './App.css';
 export default function App() {
-  let tasks = [
-    {
-      description: "My first task"
-    },
-    {
-      description: "Task 2"
-    },
-    {
-      description: "The ultimate task that's gonna break everything"
-    },
-    {
-      description: "Another task"
-    },
-    {
-      description: "The beautiful task number 5"
-    },
-    {
-      description: "And another one!"
+  let tasks;
+  try {
+    tasks = localStorage.getItem("tasks");
+    if (tasks.indexOf(",") !== -1) {
+      tasks = tasks.split(",");
+      console.log(tasks)
     }
-  ]
+    else {
+      tasks = [];
+    }
+  }
+  catch{
+    tasks = [];
+    localStorage.setItem("tasks", tasks);
+  }
+  const createNewTask = (e, newTask) => {
+    e.preventDefault();
+    tasks.push(newTask);
+    localStorage.setItem("tasks", tasks);
+  }
+  const deleteTask = (task) => {
+    console.log(tasks)
+    tasks.splice(tasks.indexOf(task), 1);
+    console.log(tasks.length)
+    localStorage.setItem("tasks", tasks);
+    console.log(localStorage)
+  }
   return (
     <>
       <Logo />
-      <Route path="/edit/:desc">
-        <EditTask />
-      </Route>
-      <Route path="/" exact>
-        <Tasks tasks={tasks} />
-      </Route>
+      <Switch>
+        <Route path="/edit/:desc" component={EditTask} />
+        <Route path="/" exact>
+          <Tasks deleteTask={deleteTask} />
+        </Route>
+        <Route path="/create/">
+          <CreateTask createNewTask={createNewTask} />
+        </Route>
+      </Switch>
     </>
   )
 }
