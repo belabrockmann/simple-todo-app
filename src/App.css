@@ -8,8 +8,10 @@
 body {
   font-family: sans-serif;
   font-size: 1.125rem;
-  text-align: center;
+
   margin: 0;
+
+  text-align: center;
 }
 
 /* Typography */
@@ -22,6 +24,7 @@ body {
 }
 .logo-text {
   font-size: 1.5rem;
+  margin: 0;
 }
 
 .description {
@@ -39,15 +42,20 @@ body {
 
 .btn {
   display: inline-block;
+  cursor: pointer;
   border: none;
 }
 
 .nav {
   display: flex;
   align-items: center;
-
-  height: 3rem;
+}
+.nav-link {
+  display: flex;
+  text-decoration: none;
+  color: black;
   padding: 0.5em;
+  height: 3rem;
 }
 .logo {
   height: 100%;
@@ -126,46 +134,88 @@ body {
   grid-area: edit;
 }
 .delete {
-  background-image: url("../src/img/trash.svg");
   cursor: pointer;
+
+  background-image: url("../src/img/trash.svg");
+
   grid-area: delete;
 }
 .action-icon {
   width: auto;
   height: 32px;
 }
+.new-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  margin: 0 auto;
+}
+.create-new-task-text {
+  font-size: 1.5rem;
+  /* font-weight: 700; */
+}
+.create-new-task-button {
+  font-size: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3rem;
+  height: 3rem;
+  margin-left: 0.5em;
+  padding: 0.2em;
+
+  text-decoration: none;
+
+  color: black;
+  border-radius: 50%;
+  background-color: green;
+}
+.task-disabled * {
+  opacity: 0.7;
+  text-decoration: line-through;
+  background-color: #777;
+}
 /* EditTask */
 .edit-task {
   display: grid;
-  grid-template-columns: 100%;
-  width: 80%;
-  grid-auto-rows: 20vw;
-  margin: 0 auto;
   justify-content: center;
+
+  width: 80%;
+  margin: 0 auto;
+
+  grid-template-columns: 100%;
+  grid-auto-rows: 20vw;
 }
 .task-description-form {
   margin-top: 3em;
 }
 .task-description-form > * {
   display: block;
+
   width: 70%;
-  margin: 0 auto;
   height: 2rem;
+  margin: 0 auto;
 }
 .task-description-input {
-  border: 1px solid #404040;
-  padding: 0.2em 0.5em;
   margin: 0.5em auto;
+  padding: 0.2em 0.5em;
+
+  border: 1px solid #404040;
 }
 .btn-submit {
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 0.5em 1.5em;
-  background-color: limegreen;
-  box-sizing: border-box;
   font-weight: 700;
+
+  box-sizing: border-box;
+  padding: 0.5em 1.5em;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  background-color: limegreen;
 }
 /* media queries */
 
@@ -187,9 +237,10 @@ body {
 
 @media screen and (min-width: 600px) {
   .task {
+    height: 15vw;
+
     grid-template-columns: 15vw 55vw repeat(2, 15vw);
     grid-template-areas: "checkbox description edit delete";
-    height: 15vw;
     grid-template-rows: 1fr;
   }
   .task:last-child {
