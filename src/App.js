@@ -9,7 +9,6 @@ export default function App() {
     tasks = localStorage.getItem("tasks");
     if (tasks.indexOf(",") !== -1) {
       tasks = tasks.split(",");
-      console.log(tasks)
     }
     else {
       tasks = [];
@@ -19,17 +18,15 @@ export default function App() {
     tasks = [];
     localStorage.setItem("tasks", tasks);
   }
-  const createNewTask = (e, newTask) => {
+  const createNewTask = (e, newTask, props) => {
     e.preventDefault();
     tasks.push(newTask);
     localStorage.setItem("tasks", tasks);
   }
+
   const deleteTask = (task) => {
-    console.log(tasks)
     tasks.splice(tasks.indexOf(task), 1);
-    console.log(tasks.length)
     localStorage.setItem("tasks", tasks);
-    console.log(localStorage)
   }
   return (
     <>
