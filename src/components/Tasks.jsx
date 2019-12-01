@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Task from './Task';
 import { Link } from 'react-router-dom';
 export default function Tasks(props) {
-    let tasks;
+    let tasks, taskStates;
     try {
         tasks = localStorage.getItem("tasks");
         if (tasks.indexOf(",") !== -1 || tasks.length) {
@@ -14,7 +14,9 @@ export default function Tasks(props) {
     }
     catch{
         tasks = [];
+        taskStates = [];
         localStorage.setItem("tasks", tasks);
+        localStorage.setItem("taskStates", taskStates);
     }
     // eslint-disable-next-line
     const [updater, setUpdater] = useState([]);
@@ -22,7 +24,7 @@ export default function Tasks(props) {
         <div className="tasks">
             <h2 className="title">Your tasks</h2>
             <div className="tasks">
-                {tasks.length ? tasks.map((item, index) => (<Task key={index} description={item} deleteTask={props.deleteTask} setUpdater={setUpdater} />)) : <h3>You don't have any tasks</h3>}
+                {tasks.length ? tasks.map((item, index) => (<Task key={Math.random()} description={item} deleteTask={props.deleteTask} setUpdater={setUpdater} />)) : <h3>You don't have any tasks</h3>}
             </div>
             <div className="new-task">
                 <p className="create-new-task-text">Add new task</p>
